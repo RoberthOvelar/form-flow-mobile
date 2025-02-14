@@ -1,0 +1,86 @@
+export const typograph = {
+  titleRegular: {
+    fontSize: 24,
+    fontFamily: "MontserratRegular",
+    lineHeight: 32,
+    includeFontPadding: false,
+  },
+  titleMedium: {
+    fontSize: 24,
+    fontFamily: "MontserratMedium",
+    lineHeight: 32,
+    includeFontPadding: false,
+  },
+  titleSemiBold: {
+    fontSize: 24,
+    fontFamily: "MontserratSemiBold",
+    lineHeight: 32,
+    includeFontPadding: false,
+  },
+  paragraphRegular: {
+    fontSize: 16,
+    fontFamily: "MontserratRegular",
+    lineHeight: 24,
+    includeFontPadding: false,
+  },
+  paragraphMedium: {
+    fontSize: 16,
+    fontFamily: "MontserratMedium",
+    lineHeight: 24,
+    includeFontPadding: false,
+  },
+  paragraphSemiBold: {
+    fontSize: 16,
+    fontFamily: "MontserratSemiBold",
+    lineHeight: 24,
+    includeFontPadding: false,
+  },
+  paragraphBold: {
+    fontSize: 16,
+    fontFamily: "MontserratBold",
+    lineHeight: 24,
+    includeFontPadding: false,
+  },
+  smallRegular: {
+    fontSize: 14,
+    fontFamily: "MontserratRegular",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+  smallMedium: {
+    fontSize: 14,
+    fontFamily: "MontserratMedium",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+  smallSemiBold: {
+    fontSize: 14,
+    fontFamily: "MontserratSemiBold",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+  smallBold: {
+    fontSize: 14,
+    fontFamily: "MontserratBold",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+  captionRegular: {
+    fontSize: 12,
+    fontFamily: "MontserratRegular",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+  captionMedium: {
+    fontSize: 12,
+    fontFamily: "MontserratMedium",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+  captionSemiBold: {
+    fontSize: 12,
+    fontFamily: "MontserratSemiBold",
+    lineHeight: 16,
+    includeFontPadding: false,
+  },
+};
