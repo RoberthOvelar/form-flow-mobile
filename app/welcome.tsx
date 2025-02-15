@@ -38,11 +38,11 @@ export default function WelcomeScreen() {
     <SafeAreaView style={styles.container}>
       <ImageBackground
         style={styles.topContainer}
-        source={require("../assets/images/welcome-background.png")}
+        source={require("@/assets/images/welcome-background.png")}
       >
         <Image
           style={styles.logo}
-          source={require("../assets/images/light-logo.png")}
+          source={require("@/assets/images/light-logo.png")}
         />
       </ImageBackground>
       <View style={styles.bottomContainer}>

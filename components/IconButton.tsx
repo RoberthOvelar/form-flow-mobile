@@ -27,6 +27,8 @@ export default function IconButton({
       backgroundColor:
         variation === "filled" ? colors.surfaceContainerHighest : "transparent",
       borderRadius: 8,
+      borderWidth: 2,
+      borderColor: colors.outline,
       paddingHorizontal: 16,
       height: 40,
       justifyContent: "center",
