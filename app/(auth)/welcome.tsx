@@ -1,6 +1,8 @@
-import Button from "@/components/Button";
-import Text from "@/components/Text";
-import { router } from "expo-router";
+import apiClient from "@/common/api-client";
+import Button from "@/components/button";
+import Text from "@/components/text";
+import { useIsFocused } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   Dimensions,
@@ -13,6 +15,17 @@ import {
 
 export default function WelcomeScreen() {
   const { width } = Dimensions.get("window");
+
+  const testApi = async () => {
+    try {
+      const response = await apiClient.get("/user/me");
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const isFocused = useIsFocused();
 
   const styles = StyleSheet.create({
     container: {
@@ -36,6 +49,7 @@ export default function WelcomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {isFocused && <StatusBar style="light" />}
       <ImageBackground
         style={styles.topContainer}
         source={require("@/assets/images/welcome-background.png")}
@@ -52,10 +66,7 @@ export default function WelcomeScreen() {
             Gerencie formulários de forma prática e eficiente.
           </Text>
         </View>
-        <Button
-          title="Vamos começar!"
-          onPress={() => router.navigate("/sign-in")}
-        />
+        <Button title="Vamos começar!" onPress={() => testApi()} />
       </View>
     </SafeAreaView>
   );

@@ -4,7 +4,7 @@ import {
   Text as DefaultText,
   type TextProps as DefaultTextProps,
 } from "react-native";
-import { useTheme } from "@/context/themeContext";
+import { useTheme } from "@/context/theme-context";
 
 export type TextProps = DefaultTextProps & {
   type?: keyof typeof typograph;

@@ -1,4 +1,4 @@
-import { useTheme } from "@/context/themeContext";
+import { useTheme } from "@/context/theme-context";
 import { StyleSheet } from "react-native";
 import { View } from "react-native";
 

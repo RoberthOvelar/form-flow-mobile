@@ -1,12 +1,12 @@
-import Button from "@/components/Button";
-import IconButton from "@/components/IconButton";
-import Apple from "@/components/icons/Apple";
-import Facebook from "@/components/icons/Facebook";
-import Google from "@/components/icons/Google";
-import Text from "@/components/Text";
-import TextInput from "@/components/TextInput";
-import { useTheme } from "@/context/themeContext";
-import database from "@/db";
+import IconButton from "@/components/icon-button";
+import Button from "@/components/button";
+import TextInput from "@/components/text-input";
+import Text from "@/components/text";
+import Apple from "@/components/icons/apple";
+import Facebook from "@/components/icons/facebook";
+import Google from "@/components/icons/google";
+import { useAuth } from "@/context/auth-context";
+import { useTheme } from "@/context/theme-context";
 import { useState } from "react";
 import {
   Image,
@@ -21,13 +21,9 @@ import {
 } from "react-native";
 
 export default function SignIn() {
+  const { signIn } = useAuth();
   const { colors, colorScheme } = useTheme();
   const [showPassword, setShowPassword] = useState(false);
-
-  const fetchProducts = async () => {
-    const products = await database.collections.get("products").query().fetch();
-    console.log(products);
-  };
 
   const logoSource =
     colorScheme === "dark"
@@ -108,12 +104,17 @@ export default function SignIn() {
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
-              <Button title="Entrar" />
               <Button
-                variation="outlined"
-                title="Criar conta"
-                onPress={() => fetchProducts()}
+                title="Entrar"
+                onPress={() =>
+                  signIn({
+                    email: "Teste",
+                    fistName: "Teste",
+                    lastName: "Teste",
+                  })
+                }
               />
+              <Button variation="outlined" title="Criar conta" />
               <View style={styles.divider} />
               <View style={styles.logoContainer}>
                 <IconButton variation="outlined">

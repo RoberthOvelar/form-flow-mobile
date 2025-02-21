@@ -7,8 +7,8 @@ import {
   ViewStyle,
 } from "react-native";
 import React from "react";
-import { useTheme } from "@/context/themeContext";
-import Text from "@/components/Text";
+import { useTheme } from "@/context/theme-context";
+import Text from "@/components/text";
 
 export type ButtonProps = TouchableOpacityProps & {
   title?: string;

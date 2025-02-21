@@ -6,8 +6,8 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import Text from "@/components/Text";
-import { useTheme } from "@/context/themeContext";
+import Text from "@/components/text";
+import { useTheme } from "@/context/theme-context";
 import { typograph } from "@/constants/typograph";
 import Feather from "@expo/vector-icons/Feather";
 

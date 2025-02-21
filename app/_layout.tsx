@@ -1,5 +1,5 @@
-import ThemedView from "@/components/ThemedView";
-import { ThemeProvider } from "@/context/themeContext";
+import { AuthProvider } from "@/context/auth-context";
+import { ThemeProvider } from "@/context/theme-context";
 import {
   Montserrat_300Light,
   Montserrat_400Regular,
@@ -49,10 +49,10 @@ export default function Root() {
 
 function RootLayoutNav() {
   return (
-    <ThemeProvider>
-      <ThemedView>
+    <AuthProvider>
+      <ThemeProvider>
         <Slot />
-      </ThemedView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

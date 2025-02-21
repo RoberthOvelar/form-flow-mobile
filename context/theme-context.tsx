@@ -1,5 +1,6 @@
-import { darkTheme } from "@/theme/darkTheme";
-import { lightTheme } from "@/theme/lightTheme";
+import { darkTheme } from "@/theme/dark-theme";
+import { lightTheme } from "@/theme/light-theme";
+import { StatusBar } from "expo-status-bar";
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { Appearance, ColorSchemeName } from "react-native";
 
@@ -43,6 +44,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     <ThemeContext.Provider
       value={{ colors, typograph, colorScheme, setColorScheme }}
     >
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
       {children}
     </ThemeContext.Provider>
   );

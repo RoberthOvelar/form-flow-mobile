@@ -6,7 +6,7 @@ import {
   ViewStyle,
 } from "react-native";
 import React from "react";
-import { useTheme } from "@/context/themeContext";
+import { useTheme } from "@/context/theme-context";
 
 export type IconButtonProps = TouchableOpacityProps & {
   children?: React.ReactNode;
@@ -28,7 +28,10 @@ export default function IconButton({
         variation === "filled" ? colors.surfaceContainerHighest : "transparent",
       borderRadius: 8,
       borderWidth: 2,
-      borderColor: colors.outline,
+      borderColor:
+        variation === "filled"
+          ? colors.surfaceContainerHighest
+          : colors.outline,
       paddingHorizontal: 16,
       height: 40,
       justifyContent: "center",
