@@ -1,13 +1,15 @@
+import { LoginSchema } from "@/api/dtos/login-dto";
+import { Button } from "@/components/button";
+import { FormTextInput } from "@/components/hook-forms/form-text-input";
 import IconButton from "@/components/icon-button";
-import Button from "@/components/button";
-import TextInput from "@/components/text-input";
-import Text from "@/components/text";
 import Apple from "@/components/icons/apple";
 import Facebook from "@/components/icons/facebook";
 import Google from "@/components/icons/google";
-import { useAuth } from "@/context/auth-context";
-import { useTheme } from "@/context/theme-context";
+import { Text } from "@/components/text";
+import { useThemeContext } from "@/context/theme-context";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   Image,
   Keyboard,
@@ -19,11 +21,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { useLoginApi } from "@/hooks/use-auth-api";
 
-export default function SignIn() {
-  const { signIn } = useAuth();
-  const { colors, colorScheme } = useTheme();
+export function LoginScreen() {
+  const { login } = useLoginApi();
+  const { colors, colorScheme } = useThemeContext();
   const [showPassword, setShowPassword] = useState(false);
+
+  const { handleSubmit, control } = useForm({
+    resolver: zodResolver(LoginSchema),
+  });
 
   const logoSource =
     colorScheme === "dark"
@@ -84,12 +91,16 @@ export default function SignIn() {
                   Faça o login para utilizar o nosso app
                 </Text>
               </View>
-              <TextInput
+              <FormTextInput
+                name="email"
+                control={control}
                 label="Email"
                 placeholder="Digite seu email"
                 prefixIcon="mail"
               />
-              <TextInput
+              <FormTextInput
+                name="password"
+                control={control}
                 label="Senha"
                 placeholder="Digite sua senha"
                 prefixIcon="lock"
@@ -106,15 +117,13 @@ export default function SignIn() {
             <View style={styles.buttonContainer}>
               <Button
                 title="Entrar"
-                onPress={() =>
-                  signIn({
-                    email: "Teste",
-                    fistName: "Teste",
-                    lastName: "Teste",
-                  })
-                }
+                onPress={handleSubmit((data) => login(data))}
               />
-              <Button variation="outlined" title="Criar conta" />
+              <Button
+                variation="outlined"
+                title="Criar conta"
+                onPress={() => console.log("Registrar")}
+              />
               <View style={styles.divider} />
               <View style={styles.logoContainer}>
                 <IconButton variation="outlined">

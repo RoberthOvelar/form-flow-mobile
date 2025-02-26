@@ -1,21 +1,17 @@
-import React from "react";
 import { typograph } from "@/constants/typograph";
+import { useThemeContext } from "@/context/theme-context";
+import React from "react";
 import {
   Text as DefaultText,
   type TextProps as DefaultTextProps,
 } from "react-native";
-import { useTheme } from "@/context/theme-context";
 
 export type TextProps = DefaultTextProps & {
   type?: keyof typeof typograph;
 };
 
-export default function Text({
-  style,
-  type = "paragraphRegular",
-  ...rest
-}: TextProps) {
-  const { colors } = useTheme();
+export function Text({ style, type = "paragraphRegular", ...rest }: TextProps) {
+  const { colors } = useThemeContext();
 
   return (
     <DefaultText

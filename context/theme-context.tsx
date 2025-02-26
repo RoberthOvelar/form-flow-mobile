@@ -1,6 +1,10 @@
-import { darkTheme } from "@/theme/dark-theme";
-import { lightTheme } from "@/theme/light-theme";
+import { darkTheme } from "@/constants/theme/dark-theme";
+import { lightTheme } from "@/constants/theme/light-theme";
 import { StatusBar } from "expo-status-bar";
+import {
+  DefaultTheme,
+  ThemeProvider as DefaultThemeProvider,
+} from "@react-navigation/native";
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { Appearance, ColorSchemeName } from "react-native";
 
@@ -44,13 +48,24 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     <ThemeContext.Provider
       value={{ colors, typograph, colorScheme, setColorScheme }}
     >
-      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
-      {children}
+      <DefaultThemeProvider
+        value={{
+          ...DefaultTheme,
+          colors: {
+            ...DefaultTheme.colors,
+            background: colors.surface,
+            primary: colors.primary,
+          },
+        }}
+      >
+        <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+        {children}
+      </DefaultThemeProvider>
     </ThemeContext.Provider>
   );
 };
 
-export const useTheme = () => {
+export const useThemeContext = () => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme deve ser usado dentro de um ThemeProvider");

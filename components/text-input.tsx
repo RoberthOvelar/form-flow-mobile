@@ -1,3 +1,8 @@
+import { Text } from "@/components/text";
+import { typograph } from "@/constants/typograph";
+import { useThemeContext } from "@/context/theme-context";
+import Feather from "@expo/vector-icons/Feather";
+import React from "react";
 import {
   TextInput as DefaultTextInput,
   TextInputProps as DefaultTextInputProps,
@@ -5,33 +10,29 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
-import Text from "@/components/text";
-import { useTheme } from "@/context/theme-context";
-import { typograph } from "@/constants/typograph";
-import Feather from "@expo/vector-icons/Feather";
 
-type TextInputProps = DefaultTextInputProps & {
+export type TextInputProps = DefaultTextInputProps & {
   label?: string;
-  hasError?: boolean;
   errorMessage?: string;
   suffixIcon?: keyof typeof Feather.glyphMap;
-  prefixIcon: keyof typeof Feather.glyphMap;
+  prefixIcon?: keyof typeof Feather.glyphMap;
   actionButton?: { icon: keyof typeof Feather.glyphMap; onPress: () => void };
   onActionPress?: () => void;
 };
 
-export default function TextInput(props: TextInputProps) {
+export function TextInput(props: TextInputProps) {
   const {
     label,
-    hasError,
     prefixIcon,
     suffixIcon,
     actionButton,
+    errorMessage,
     ...otherProps
   } = props;
 
-  const { colors } = useTheme();
+  const hasError = !!errorMessage;
+
+  const { colors } = useThemeContext();
 
   const styles = StyleSheet.create({
     container: {
@@ -59,6 +60,15 @@ export default function TextInput(props: TextInputProps) {
       height: 40,
       alignItems: "center",
       justifyContent: "center",
+    },
+    infoContainer: {
+      marginTop: 4,
+      textAlign: "center",
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    infoIcon: {
+      marginRight: 4,
     },
   });
 
@@ -106,6 +116,23 @@ export default function TextInput(props: TextInputProps) {
           </TouchableOpacity>
         )}
       </View>
+      {hasError && errorMessage && (
+        <View style={styles.infoContainer}>
+          <Feather
+            style={styles.infoIcon}
+            name="info"
+            size={16}
+            color={colors.error}
+          />
+          <Text
+            type="smallMedium"
+            style={{ color: colors.error }}
+            allowFontScaling={false}
+          >
+            {errorMessage}
+          </Text>
+        </View>
+      )}
     </View>
   );
 }

@@ -7,8 +7,8 @@ import {
   ViewStyle,
 } from "react-native";
 import React from "react";
-import { useTheme } from "@/context/theme-context";
-import Text from "@/components/text";
+import { useThemeContext } from "@/context/theme-context";
+import { Text } from "@/components/text";
 
 export type ButtonProps = TouchableOpacityProps & {
   title?: string;
@@ -17,13 +17,13 @@ export type ButtonProps = TouchableOpacityProps & {
   style?: StyleProp<ViewStyle>;
 };
 
-export default function Button({
+export function Button({
   variation = "filled",
   title,
   style,
   ...rest
 }: ButtonProps) {
-  const { colors } = useTheme();
+  const { colors } = useThemeContext();
   const styles = StyleSheet.create({
     container: {
       width: "100%",

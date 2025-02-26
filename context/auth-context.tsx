@@ -1,14 +1,16 @@
+import { ReturnLoginDto } from "@/api/dtos/return-login-dto";
+import { secureStoreService } from "@/services/secure-store-service";
 import { createContext, useContext, useState } from "react";
 
 type User = {
-  fistName: string;
+  firstName: string;
   lastName: string;
   email: string;
 };
 
 type AuthContextType = {
   user: User | null;
-  signIn: (user: User) => void;
+  signIn: (data: ReturnLoginDto) => void;
   signOut: () => void;
 };
 
@@ -19,11 +21,13 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const signIn = (user: User) => {
-    setUser(user);
+  const signIn = (data: ReturnLoginDto) => {
+    secureStoreService.saveToken(data.accessToken);
+    setUser(data.user);
   };
 
   const signOut = () => {
+    secureStoreService.deleteToken();
     setUser(null);
   };
 
@@ -34,7 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useAuth = () => {
+export const useAuthContext = () => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth deve ser usado dentro de um AuthProvider");

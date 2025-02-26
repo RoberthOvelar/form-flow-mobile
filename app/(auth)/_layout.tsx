@@ -1,14 +1,13 @@
-import ThemedStack from "@/components/themed-stack";
-import { useAuth } from "@/context/auth-context";
+import { useAuthContext } from "@/context/auth-context";
 import { Redirect, Stack } from "expo-router";
 
 export default function AuthLayout() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   if (user) return <Redirect href="/" />;
 
   return (
-    <ThemedStack
+    <Stack
       screenOptions={{
         headerShown: false,
       }}

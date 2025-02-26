@@ -8,6 +8,7 @@ import {
   Montserrat_700Bold,
   useFonts,
 } from "@expo-google-fonts/montserrat";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -18,6 +19,8 @@ export { ErrorBoundary } from "expo-router";
 export const unstable_settings = {
   initialRouteName: "(tabs)",
 };
+
+const queryClient = new QueryClient();
 
 SplashScreen.preventAutoHideAsync();
 
@@ -49,10 +52,12 @@ export default function Root() {
 
 function RootLayoutNav() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <Slot />
-      </ThemeProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProvider>
+          <Slot />
+        </ThemeProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

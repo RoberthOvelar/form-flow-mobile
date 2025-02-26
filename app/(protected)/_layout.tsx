@@ -1,13 +1,16 @@
-import ThemedStack from "@/components/themed-stack";
-import { useAuth } from "@/context/auth-context";
-import { Redirect } from "expo-router";
+import { useAuthContext } from "@/context/auth-context";
+import { Redirect, Stack } from "expo-router";
 
 export default function ProtectedLayout() {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   if (!user) {
     return <Redirect href="/(auth)/welcome" />;
   }
 
-  return <ThemedStack />;
+  return (
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
+  );
 }
