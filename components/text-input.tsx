@@ -1,6 +1,6 @@
 import { Text } from "@/components/text";
 import { typograph } from "@/constants/typograph";
-import { useThemeContext } from "@/context/theme-context";
+import { useThemeContext } from "@/store/theme-context";
 import Feather from "@expo/vector-icons/Feather";
 import React from "react";
 import {

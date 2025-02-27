@@ -6,7 +6,7 @@ import Apple from "@/components/icons/apple";
 import Facebook from "@/components/icons/facebook";
 import Google from "@/components/icons/google";
 import { Text } from "@/components/text";
-import { useThemeContext } from "@/context/theme-context";
+import { useThemeContext } from "@/store/theme-context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,10 +21,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { useLoginApi } from "@/hooks/use-auth-api";
+import { useLogin } from "@/screens/login/use-login";
 
 export function LoginScreen() {
-  const { login } = useLoginApi();
+  const { login } = useLogin();
   const { colors, colorScheme } = useThemeContext();
   const [showPassword, setShowPassword] = useState(false);
 

@@ -1,4 +1,4 @@
-import { useAuthContext } from "@/context/auth-context";
+import { useAuthStore } from "@/store/auth-store";
 import { secureStoreService } from "@/services/secure-store-service";
 import axios from "axios";
 
@@ -14,9 +14,7 @@ apiClient.interceptors.request.use(
   async (config) => {
     const token =
       process.env.EXPO_PUBLIC_TOKEN_STORE_KEY &&
-      (await secureStoreService.getToken(
-        process.env.EXPO_PUBLIC_TOKEN_STORE_KEY,
-      ));
+      (await secureStoreService.getToken());
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -30,7 +28,7 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    const { signOut } = useAuthContext();
+    const { signOut } = useAuthStore();
     if (error.response) {
       const { status } = error.response;
       if (status === 401) {

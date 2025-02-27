@@ -6,7 +6,7 @@ import {
   ViewStyle,
 } from "react-native";
 import React from "react";
-import { useThemeContext } from "@/context/theme-context";
+import { useThemeContext } from "@/store/theme-context";
 
 export type IconButtonProps = TouchableOpacityProps & {
   children?: React.ReactNode;

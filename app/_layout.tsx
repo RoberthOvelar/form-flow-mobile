@@ -1,5 +1,4 @@
-import { AuthProvider } from "@/context/auth-context";
-import { ThemeProvider } from "@/context/theme-context";
+import { ThemeProvider } from "@/store/theme-context";
 import {
   Montserrat_300Light,
   Montserrat_400Regular,
@@ -53,11 +52,9 @@ export default function Root() {
 function RootLayoutNav() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ThemeProvider>
-          <Slot />
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <Slot />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

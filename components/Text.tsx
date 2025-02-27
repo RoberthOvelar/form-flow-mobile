@@ -1,5 +1,5 @@
 import { typograph } from "@/constants/typograph";
-import { useThemeContext } from "@/context/theme-context";
+import { useThemeContext } from "@/store/theme-context";
 import React from "react";
 import {
   Text as DefaultText,

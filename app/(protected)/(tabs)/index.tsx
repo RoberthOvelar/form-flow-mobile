@@ -1,13 +1,13 @@
 import { Button } from "@/components/button";
-import { useAuthContext } from "@/context/auth-context";
+import { useAuthStore } from "@/store/auth-store";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function Tab() {
-  const { signOut } = useAuthContext();
+  const { signOut, user } = useAuthStore();
 
   return (
     <View style={styles.container}>
-      <Text>Tab [Home]</Text>
+      <Text>Olá, {user?.firstName}</Text>
       <Button title="Logout" onPress={signOut} />
     </View>
   );

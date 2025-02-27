@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { Text } from "@/components/text";
-import { useThemeContext } from "@/context/theme-context";
+import { useThemeContext } from "@/store/theme-context";
 
 export default function Toast() {
   const { colors } = useThemeContext();
