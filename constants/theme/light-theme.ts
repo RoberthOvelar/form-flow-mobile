@@ -14,6 +14,8 @@ export const lightTheme = {
     tertiaryContainer: "#BED1DE",
     onTertiaryContainer: "#4A4263",
     error: "#BA1A1A",
+    success: "#2E854B",
+    onSuccess: "#FFFFFF",
     onError: "#FFFFFF",
     errorContainer: "#FFDAD6",
     onErrorContainer: "#93000A",

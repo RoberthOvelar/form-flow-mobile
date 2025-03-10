@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/store/auth-store";
-import { LoadScreen } from "@/screens/load-screen.tsx/load-screen";
+import { LoadScreen } from "@/@screens/load-screen.tsx/load.screen";
 import { Redirect, Stack } from "expo-router";
 
 export default function ProtectedLayout() {

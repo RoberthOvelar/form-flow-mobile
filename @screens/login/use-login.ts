@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/store/auth-store";
-import { loginService } from "@/screens/login/login-service";
+import { loginService } from "@/@screens/login/login.service";
 import { useMutation } from "@tanstack/react-query";
 
 export function useLogin() {

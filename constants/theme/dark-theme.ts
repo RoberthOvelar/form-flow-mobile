@@ -14,6 +14,8 @@ export const darkTheme = {
     tertiaryContainer: "#314962",
     onTertiaryContainer: "#D0E4FF",
     error: "#FFB4AB",
+    success: "#2E854B",
+    onSuccess: "#FFFFFF",
     onError: "#690005",
     errorContainer: "#93000A",
     onErrorContainer: "#FFDAD6",

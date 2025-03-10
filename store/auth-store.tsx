@@ -1,5 +1,5 @@
 import { ReturnLoginDto } from "@/api/dtos/return-login-dto";
-import { secureStoreService } from "@/services/secure-store-service";
+import { secureStoreService } from "@/services/secure-store.service";
 import { create } from "zustand";
 
 type User = {
@@ -17,8 +17,10 @@ type AuthState = {
 
 export const useAuthStore = create<AuthState>((set) => {
   const loadCredentials = async () => {
-    const user = await secureStoreService.getUser();
-    const token = await secureStoreService.getToken();
+    const [user, token] = await Promise.all([
+      secureStoreService.getUser(),
+      secureStoreService.getToken(),
+    ]);
     if (user && token) {
       set({ user: JSON.parse(user), loading: false });
     } else {

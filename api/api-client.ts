@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/store/auth-store";
-import { secureStoreService } from "@/services/secure-store-service";
+import { secureStoreService } from "@/services/secure-store.service";
 import axios from "axios";
 
 const apiClient = axios.create({

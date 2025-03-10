@@ -2,7 +2,7 @@ import { Text } from "@/components/text";
 import { typograph } from "@/constants/typograph";
 import { useThemeContext } from "@/store/theme-context";
 import Feather from "@expo/vector-icons/Feather";
-import React from "react";
+import React, { ReactElement } from "react";
 import {
   TextInput as DefaultTextInput,
   TextInputProps as DefaultTextInputProps,
@@ -10,13 +10,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import IconWrapper from "./icon-wrapper";
+import { LucideInfo } from "lucide-react-native";
 
 export type TextInputProps = DefaultTextInputProps & {
   label?: string;
   errorMessage?: string;
-  suffixIcon?: keyof typeof Feather.glyphMap;
-  prefixIcon?: keyof typeof Feather.glyphMap;
-  actionButton?: { icon: keyof typeof Feather.glyphMap; onPress: () => void };
+  prefixIcon?: ReactElement;
+  suffixIcon?: ReactElement;
+  actionButton?: { icon: ReactElement; onPress: () => void };
   onActionPress?: () => void;
 };
 
@@ -82,11 +84,9 @@ export function TextInput(props: TextInputProps) {
       <View style={styles.inputContainer}>
         {prefixIcon && (
           <View style={styles.iconContainer}>
-            <Feather
-              name={prefixIcon}
-              size={16}
-              color={hasError ? colors.error : colors.outline}
-            />
+            <IconWrapper size={16} color={colors.outline}>
+              {prefixIcon}
+            </IconWrapper>
           </View>
         )}
         <DefaultTextInput
@@ -96,11 +96,9 @@ export function TextInput(props: TextInputProps) {
         />
         {suffixIcon && (
           <View style={styles.iconContainer}>
-            <Feather
-              name={suffixIcon}
-              size={16}
-              color={hasError ? colors.error : colors.outline}
-            />
+            <IconWrapper size={16} color={colors.outline}>
+              {suffixIcon}
+            </IconWrapper>
           </View>
         )}
         {actionButton && (
@@ -108,22 +106,17 @@ export function TextInput(props: TextInputProps) {
             onPress={actionButton.onPress}
             style={styles.iconContainer}
           >
-            <Feather
-              name={actionButton.icon}
-              size={16}
-              color={hasError ? colors.error : colors.outline}
-            />
+            <IconWrapper size={16} color={colors.outline}>
+              {actionButton.icon}
+            </IconWrapper>
           </TouchableOpacity>
         )}
       </View>
       {hasError && errorMessage && (
         <View style={styles.infoContainer}>
-          <Feather
-            style={styles.infoIcon}
-            name="info"
-            size={16}
-            color={colors.error}
-          />
+          <IconWrapper style={styles.infoIcon} size={16} color={colors.error}>
+            <LucideInfo />
+          </IconWrapper>
           <Text
             type="smallMedium"
             style={{ color: colors.error }}

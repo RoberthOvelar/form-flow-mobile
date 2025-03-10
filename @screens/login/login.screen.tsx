@@ -6,8 +6,16 @@ import Apple from "@/components/icons/apple";
 import Facebook from "@/components/icons/facebook";
 import Google from "@/components/icons/google";
 import { Text } from "@/components/text";
+import { useLogin } from "@screens/login/use-login";
 import { useThemeContext } from "@/store/theme-context";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { router } from "expo-router";
+import {
+  LucideEye,
+  LucideEyeOff,
+  LucideLock,
+  LucideMail,
+} from "lucide-react-native";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -21,7 +29,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { useLogin } from "@/screens/login/use-login";
 
 export function LoginScreen() {
   const { login } = useLogin();
@@ -96,17 +103,17 @@ export function LoginScreen() {
                 control={control}
                 label="Email"
                 placeholder="Digite seu email"
-                prefixIcon="mail"
+                prefixIcon={<LucideMail />}
               />
               <FormTextInput
                 name="password"
                 control={control}
                 label="Senha"
                 placeholder="Digite sua senha"
-                prefixIcon="lock"
+                prefixIcon={<LucideLock />}
                 secureTextEntry={!showPassword}
                 actionButton={{
-                  icon: showPassword ? "eye" : "eye-off",
+                  icon: showPassword ? <LucideEye /> : <LucideEyeOff />,
                   onPress: () => setShowPassword(!showPassword),
                 }}
               />
@@ -122,7 +129,7 @@ export function LoginScreen() {
               <Button
                 variation="outlined"
                 title="Criar conta"
-                onPress={() => console.log("Registrar")}
+                onPress={() => router.push("/(auth)/sign-up")}
               />
               <View style={styles.divider} />
               <View style={styles.logoContainer}>

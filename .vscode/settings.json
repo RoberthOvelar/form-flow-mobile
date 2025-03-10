@@ -4,5 +4,20 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "material-icon-theme.activeIconPack": "react"
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.files.customClones": [
+    {
+      "name": "typescript-service",
+      "base": "typescript",
+      "color": "yellow-500",
+      "fileExtensions": ["service.ts"]
+    },
+    {
+      "name": "react-screen",
+      "base": "react",
+      "color": "light-green-400",
+      "fileExtensions": ["screen.tsx"]
+    },
+  ]
 }
+
