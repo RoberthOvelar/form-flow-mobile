@@ -1,3 +1,4 @@
+import { CustomToast } from "@/components/custom-toast";
 import { ThemeProvider } from "@/store/theme-context";
 import {
   Montserrat_300Light,
@@ -54,6 +55,7 @@ function RootLayoutNav() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <Slot />
+        <CustomToast position="top" visibilityTime={3000} />
       </ThemeProvider>
     </QueryClientProvider>
   );

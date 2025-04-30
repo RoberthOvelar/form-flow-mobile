@@ -9,13 +9,13 @@
     {
       "name": "typescript-service",
       "base": "typescript",
-      "color": "yellow-500",
+      "color": "#f0a73a",
       "fileExtensions": ["service.ts"]
     },
     {
       "name": "react-screen",
       "base": "react",
-      "color": "light-green-400",
+      "color": "#4ec29f",
       "fileExtensions": ["screen.tsx"]
     },
   ]

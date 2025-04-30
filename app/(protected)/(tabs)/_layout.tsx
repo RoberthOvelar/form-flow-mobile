@@ -1,11 +1,21 @@
+import { useThemeContext } from "@/store/theme-context";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 
 export default function TabLayout() {
+  const { colors } = useThemeContext();
+
   return (
     <Tabs
       screenOptions={{
+        headerShown: false,
         tabBarActiveTintColor: "blue",
+        tabBarStyle: {
+          backgroundColor: colors.surfaceBright,
+        },
+        headerStyle: {
+          backgroundColor: colors.surfaceBright,
+        },
       }}
     >
       <Tabs.Screen

@@ -1,7 +1,7 @@
 import { Text } from "@/components/text";
 import { typograph } from "@/constants/typograph";
 import { useThemeContext } from "@/store/theme-context";
-import Feather from "@expo/vector-icons/Feather";
+import { LucideInfo } from "lucide-react-native";
 import React, { ReactElement } from "react";
 import {
   TextInput as DefaultTextInput,
@@ -11,7 +11,6 @@ import {
   View,
 } from "react-native";
 import IconWrapper from "./icon-wrapper";
-import { LucideInfo } from "lucide-react-native";
 
 export type TextInputProps = DefaultTextInputProps & {
   label?: string;
@@ -56,6 +55,7 @@ export function TextInput(props: TextInputProps) {
       height: 40,
       color: colors.onSurface,
       ...typograph.paragraphRegular,
+      lineHeight: undefined,
     },
     iconContainer: {
       width: 40,

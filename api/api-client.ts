@@ -1,6 +1,7 @@
-import { useAuthStore } from "@/store/auth-store";
 import { secureStoreService } from "@/services/secure-store.service";
+import { useAuthStore } from "@/store/auth-store";
 import axios from "axios";
+import Toast from "react-native-toast-message";
 
 const apiClient = axios.create({
   baseURL: process.env.EXPO_PUBLIC_BASE_URL,
@@ -28,27 +29,31 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    const { signOut } = useAuthStore();
     if (error.response) {
       const { status } = error.response;
       if (status === 401) {
-        console.warn(
-          "Usuário não autenticado. Redirecionando...",
-          JSON.stringify(error),
-        );
-        signOut();
+        useAuthStore.getState().signOut();
+        console.warn(JSON.stringify(error, null, 2));
       } else if (status === 403) {
-        console.warn("Acesso negado!", JSON.stringify(error));
-        signOut();
+        useAuthStore.getState().signOut();
+        console.warn(JSON.stringify(error, null, 2));
       } else if (status >= 500) {
-        console.error(
-          "Erro no servidor. Tente novamente mais tarde.",
-          JSON.stringify(error),
-        );
+        console.error(JSON.stringify(error, null, 2));
       }
+    } else if (error.request) {
+      console.error(JSON.stringify(error.message, null, 2));
     } else {
-      console.error("Erro na requisição:", JSON.stringify(error));
+      console.error(
+        "Erro na requisição:",
+        JSON.stringify(error.message, null, 2),
+      );
     }
+
+    Toast.show({
+      text1:
+        error.response?.data?.message || error.message || "Erro na requisição",
+      type: "error",
+    });
 
     return Promise.reject(error);
   },

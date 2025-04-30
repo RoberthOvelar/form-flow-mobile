@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 
 export function SignUpScreen() {
   const { colorScheme } = useThemeContext();
@@ -45,7 +46,12 @@ export function SignUpScreen() {
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={getLogoSource(colorScheme)} />
             </View>
-            <Button title="Sign Up" onPress={() => {}} />
+            <Button
+              title="Sign Up"
+              onPress={() => {
+                Toast.show({ text1: "Olá", type: "error" });
+              }}
+            />
           </ScrollView>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

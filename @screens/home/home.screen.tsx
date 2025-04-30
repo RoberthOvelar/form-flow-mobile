@@ -1,7 +1,7 @@
-import { View } from "react-native";
-import { useAuthStore } from "@/store/auth-store";
-import { Text } from "@/components/text";
 import { Button } from "@/components/button";
+import { Text } from "@/components/text";
+import { useAuthStore } from "@/store/auth-store";
+import { View } from "react-native";
 
 export function HomeScreen() {
   const { signOut } = useAuthStore();
